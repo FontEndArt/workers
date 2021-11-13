@@ -620,6 +620,27 @@ module.exports = function (webpackEnv) {
       //   // importWorkboxFrom: 'disabled',
       //   // // 把local模式导出的文件, 先部署获取到cdn链接, 在写死就ok
       //   // importScripts: 'https://cdn/workbox-sw.js',
+      // CDN --- 开始
+      // maximumFileSizeToCacheInBytes: 1024 * 1024 * 5,
+      // runtimeCaching: [
+      //   {
+      //     urlPattern: /^https:\/\/cdn.staticfile.org\//,
+      //     handler: 'NetworkFirst',
+      //     options: {
+      //       cacheName: 'cached-cdn',
+      //       networkTimeoutSeconds: 2,
+      //       expiration: {
+      //         maxEntries: 50,
+      //         maxAgeSeconds: 1 * 24 * 60 * 60, // 1 day
+      //       },
+      //       cacheableResponse: {
+      //         statuses: [0, 200],
+      //       },
+      //     },
+      //   },
+      // ],
+      // CDN --- 结束
+      // // 其他
       //   runtimeCaching: [
       //     {
       //       handler: "NetworkFirst",
