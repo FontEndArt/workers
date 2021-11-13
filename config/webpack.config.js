@@ -589,11 +589,66 @@ module.exports = function (webpackEnv) {
         // 不允许遗留任何“旧的” ServiceWorkers
         clientsClaim: true,
         skipWaiting: true,
+        additionalManifestEntries: [
+          {
+            url: "/favicon.ico",
+            revision: "favicon",
+          },
+          {
+            url: "/manifest.json",
+            revision: "manifest",
+          },
+          {
+            url: "/logo192.png",
+            revision: "logo192",
+          },
+          {
+            url: "/logo512.png",
+            revision: "logo512",
+          },
+        ],
       }),
-      new WorkboxWebpackPlugin.InjectManifest({
-        swSrc: "./src/sw.js",
-        include: [path.resolve(__dirname, "/favicon.ico")],
-      }),
+      // new GenerateSW({
+      //   swDest: "sw.js",
+      //   skipWaiting: false,
+      //   //取得页面控制权 旧的不再生效理解接管
+      //   clientsClaim: true,
+      //   // 尝试删除老版本缓存
+      //   cleanupOutdatedCaches: true,
+      //   // mode: 'production',
+      //   //如果不想从本地去加载对应的文件
+      //   // importWorkboxFrom: 'disabled',
+      //   // // 把local模式导出的文件, 先部署获取到cdn链接, 在写死就ok
+      //   // importScripts: 'https://cdn/workbox-sw.js',
+      //   runtimeCaching: [
+      //     {
+      //       handler: "NetworkFirst",
+      //       urlPattern: "/",
+      //     },
+      //   ],
+      //   // runtimeCaching: [
+      //   //   {
+      //   //     urlPattern: /^https:\/\/easy-mock\.com\//,
+      //   //     handler: 'NetworkFirst',
+      //   //     options: {
+      //   //       cacheName: 'cached-api',
+      //   //       networkTimeoutSeconds: 2,
+      //   //       expiration: {
+      //   //         maxEntries: 50,
+      //   //         maxAgeSeconds: 1 * 24 * 60 * 60, // 1 day
+      //   //       },
+      //   //       cacheableResponse: {
+      //   //         statuses: [0, 200],
+      //   //       },
+      //   //     },
+      //   //   },
+      //   // ]
+      // }),
+      // new WorkboxWebpackPlugin.InjectManifest({
+      //   swSrc: "./src/sw.js",
+      //   swDest: "sw.js",
+      //   // include: [path.resolve(__dirname, "/favicon.ico")],
+      // }),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
       // https://github.com/facebook/create-react-app/issues/5358
